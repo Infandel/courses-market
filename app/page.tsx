@@ -1,19 +1,44 @@
-import { Htag, Button } from './components';
+'use client';
+
+import { useEffect, useState } from 'react';
+import { Htag, Button, Paragraph, Tag, Rating } from './components';
 import styles from './page.module.css';
 import type { Metadata } from 'next';
 
-export async function generateMetadata(): Promise<Metadata> {
-	return {
-		title: 'Computed meta',
-	};
-}
+// export async function generateMetadata(): Promise<Metadata> {
+// 	return {
+// 		title: 'Computed meta',
+// 	};
+// }
 
 export default function Home() {
+	const [counter, setCounter] = useState(4);
+
+	useEffect(() => {
+		console.log(counter);
+	});
 	return (
 		<div className={styles.page}>
+			{counter}
 			<Htag tag='h1'>Текст</Htag>
-			<Button appearance='primary'>Кнопка</Button>
-			<Button appearance='ghost'>Кнопка</Button>
+			<Button appearance='primary' arrow='right'>
+				Кнопка
+			</Button>
+			<Button appearance='ghost' arrow='down'>
+				Кнопка
+			</Button>
+			<Paragraph size='lg'>Big</Paragraph>
+			<Paragraph>MIDDLE</Paragraph>
+			<Paragraph size='sm'>Small</Paragraph>
+			<Tag size='sm'>Ghost</Tag>
+			<Tag color='red'>Большой</Tag>
+			<Tag size='sm' color='green'>
+				Green
+			</Tag>
+			<Tag size='sm' color='primary'>
+				Primary
+			</Tag>
+			<Rating isEditable rating={counter} setRating={setCounter} />
 		</div>
 	);
 }
