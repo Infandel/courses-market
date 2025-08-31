@@ -5,8 +5,10 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
 	return (
 		<>
 			<Header />
-			<Sidebar />
-			<main>{children}</main>
+			<div>
+				<Sidebar />
+				<main>{children}</main>
+			</div>
 			<Footer />
 		</>
 	);
