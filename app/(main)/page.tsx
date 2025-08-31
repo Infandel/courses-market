@@ -1,9 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Htag, Button, Paragraph, Tag, Rating } from './components';
-import styles from './page.module.css';
-import type { Metadata } from 'next';
+import { Htag, Button, Paragraph, Tag, Rating } from '@/shared';
+// import type { Metadata } from 'next';
 
 // export async function generateMetadata(): Promise<Metadata> {
 // 	return {
@@ -18,7 +17,7 @@ export default function Home() {
 		console.log(counter);
 	});
 	return (
-		<div className={styles.page}>
+		<div>
 			{counter}
 			<Htag tag='h1'>Текст</Htag>
 			<Button appearance='primary' arrow='right'>

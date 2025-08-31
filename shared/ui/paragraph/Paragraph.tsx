@@ -1,11 +1,11 @@
 import { ParagraphProps } from './Paragraph.props';
 import styles from './Paragraph.module.css';
-import cn from 'classnames';
+import clsx from 'clsx';
 
 export const Paragraph = ({ size = 'md', className, children, ...props }: ParagraphProps) => {
 	return (
 		<p
-			className={cn(styles.paragraph, className, {
+			className={clsx(styles.paragraph, className, {
 				[styles.sm]: size === 'sm',
 				[styles.md]: size === 'md',
 				[styles.lg]: size === 'lg',

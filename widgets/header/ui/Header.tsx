@@ -1,11 +1,11 @@
-import { TagProps } from './Tag.props';
-import styles from './Tag.module.css';
-import cn from 'classnames';
+import { HeaderProps } from './Header.props';
+import styles from './Header.module.css';
+import clsx from 'clsx';
 
-export const Tag = ({ size = 'md', className, children, color = 'ghost', href, ...props }: TagProps) => {
+export const Header = ({ size = 'md', className, children, color = 'ghost', href, ...props }: HeaderProps) => {
 	return (
 		<div
-			className={cn(styles.tag, className, {
+			className={clsx(styles.Header, className, {
 				[styles.sm]: size === 'sm',
 				[styles.md]: size === 'md',
 				[styles.ghost]: color === 'ghost',

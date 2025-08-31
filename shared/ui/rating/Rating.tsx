@@ -1,9 +1,9 @@
 'use client';
 
 import { RatingProps } from './Rating.props';
-import StarIcon from './star.svg';
+import StarIcon from '@/public/assets/star.svg';
 import styles from './Rating.module.css';
-import cn from 'classnames';
+import clsx from 'clsx';
 import { JSX, KeyboardEvent, useEffect, useState } from 'react';
 
 export const Rating = ({ isEditable = false, rating, setRating, ...props }: RatingProps) => {
@@ -18,7 +18,7 @@ export const Rating = ({ isEditable = false, rating, setRating, ...props }: Rati
 		const updatedArray = ratingArray.map((r: JSX.Element, i: number) => {
 			return (
 				<span
-					className={cn({
+					className={clsx({
 						[styles.filled]: i < currentRating,
 						[styles.editable]: isEditable,
 					})}
