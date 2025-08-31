@@ -4,27 +4,7 @@ const nextConfig: NextConfig = {
 	turbopack: {
 		rules: {
 			'*.svg': {
-				loaders: [
-					{
-						loader: '@svgr/webpack',
-						options: {
-							svgoConfig: {
-								plugins: [
-									{
-										name: 'preset-default',
-										params: {
-											overrides: {
-												// customize default plugin options
-												removeViewBox: false,
-											},
-										},
-									},
-									'removeDimensions',
-								],
-							},
-						},
-					},
-				],
+				loaders: ['@svgr/webpack'],
 				as: '*.js',
 			},
 		},
