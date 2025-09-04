@@ -4,6 +4,13 @@ module.exports = {
 	plugins: ['stylelint-scss', 'stylelint-order'],
 	rules: {
 		'selector-class-pattern': ['^[a-zA-Z0-9]+$', { resolveNestedSelectors: true }],
+		'declaration-block-no-redundant-longhand-properties': [
+			true,
+			{
+				ignoreShorthands: ['grid-template'],
+			},
+		],
+		'media-feature-range-notation': 'prefix',
 	},
 	overrides: [
 		{

@@ -1,7 +1,18 @@
 import { FooterProps } from './Footer.props';
-import styles from './Footer.module.css';
+import { format } from 'date-fns';
+import styles from './Footer.module.scss';
 import clsx from 'clsx';
 
-export const Footer = ({ ...props }: FooterProps) => {
-	return <div {...props}>Footer hello</div>;
+export const Footer = ({ className, ...props }: FooterProps) => {
+	return (
+		<footer className={clsx(className, styles.footer)} {...props}>
+			<div>Made by Infandel in {format(new Date(), 'yyyy')}</div>
+			<a href='#' target='_blank'>
+				Пользовательское соглашение
+			</a>
+			<a href='#' target='_blank'>
+				Политика конфиденциальности
+			</a>
+		</footer>
+	);
 };
