@@ -1,24 +1,21 @@
-'use client';
+import { Htag, Button, Paragraph, Tag } from '@/shared';
+import type { Metadata } from 'next';
 
-import { useEffect, useState } from 'react';
-import { Htag, Button, Paragraph, Tag, Rating } from '@/shared';
-// import type { Metadata } from 'next';
+export async function generateMetadata(): Promise<Metadata> {
+	return {
+		title: 'Computed meta',
+	};
+}
 
-// export async function generateMetadata(): Promise<Metadata> {
-// 	return {
-// 		title: 'Computed meta',
-// 	};
-// }
+export default async function Home() {
+	// const [counter, setCounter] = useState(4);
 
-export default function Home() {
-	const [counter, setCounter] = useState(4);
-
-	useEffect(() => {
-		console.log(counter);
-	});
+	// useEffect(() => {
+	// 	console.log(counter);
+	// });
 	return (
 		<div>
-			{counter}
+			{/* {counter} */}
 			<Htag tag='h1'>Текст</Htag>
 			<Button appearance='primary' arrow='right'>
 				Кнопка
@@ -37,7 +34,7 @@ export default function Home() {
 			<Tag size='sm' color='primary'>
 				Primary
 			</Tag>
-			<Rating isEditable rating={counter} setRating={setCounter} />
+			{/* <Rating isEditable rating={counter} setRating={setCounter} /> */}
 		</div>
 	);
 }
