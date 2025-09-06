@@ -3,7 +3,7 @@ import { SidebarProps } from './Sidebar.props';
 // import clsx from 'clsx';
 import { Menu } from '@/features';
 
-export const Sidebar = async ({ ...props }: SidebarProps) => {
+export const Sidebar = ({ ...props }: SidebarProps) => {
 	return (
 		<div {...props}>
 			<Menu />
