@@ -1,12 +1,27 @@
-import { getMenu, PageItem } from '@/entities';
+'use client';
+
+import { MenuItem, PageItem } from '@/entities';
 import styles from './Menu.module.css';
-import { firstLevelMenu } from '../constants';
 import clsx from 'clsx';
 import Link from 'next/link';
-import { FirstLevelMenuItem } from '../types';
+import { FirstLevelMenuItem, firstLevelMenu } from '@/shared';
+import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 
-export const Menu = async () => {
-	const { menu, firstCategory } = await getMenu();
+export const Menu = ({ menu, firstCategory }: { menu: MenuItem[]; firstCategory: number }) => {
+	const pathname = usePathname();
+	const [currentMenu, setCurrentMenu] = useState(menu);
+
+	const openSecondLevel = (secondCategory: string) => {
+		setCurrentMenu(
+			menu.map((m) => {
+				if (m._id.secondCategory == secondCategory) {
+					m.isOpened = !m.isOpened;
+				}
+				return m;
+			})
+		);
+	};
 
 	// 1st level (top tier) route
 	const buildFirstLevel = () => {
@@ -35,18 +50,26 @@ export const Menu = async () => {
 	const buildSecondLevel = (menuItem: FirstLevelMenuItem) => {
 		return (
 			<div className={styles.secondBlock}>
-				{menu.map((m) => (
-					<div key={m._id.secondCategory}>
-						<div className={styles.secondLevel}>{m._id.secondCategory}</div>
-						<div
-							className={clsx(styles.secondLevelBlock, {
-								[styles.secondLevelBlockOpened]: m.isOpened,
-							})}
-						>
-							{buildThirdLevel(m.pages, menuItem.route)}
+				{currentMenu.map((m) => {
+					if (m.pages.map((p) => p.alias).includes(pathname.split('/').at(-1) as string)) {
+						m.isOpened = true;
+					}
+
+					return (
+						<div key={m._id.secondCategory}>
+							<div className={styles.secondLevel} onClick={() => openSecondLevel(m._id.secondCategory)}>
+								{m._id.secondCategory}
+							</div>
+							<div
+								className={clsx(styles.secondLevelBlock, {
+									[styles.secondLevelBlockOpened]: m.isOpened,
+								})}
+							>
+								{buildThirdLevel(m.pages, menuItem.route)}
+							</div>
 						</div>
-					</div>
-				))}
+					);
+				})}
 			</div>
 		);
 	};
@@ -58,7 +81,7 @@ export const Menu = async () => {
 				key={p.alias}
 				href={`/${route}/${p.alias}`}
 				className={clsx(styles.thirdLevel, {
-					[styles.thirdLevelActive]: false,
+					[styles.thirdLevelActive]: `/${route}/${p.alias}` === pathname,
 				})}
 				scroll={false}
 			>

@@ -1,5 +1,5 @@
 import { TopLevelCategory } from '@/entities';
-import { FirstLevelMenuItem } from '../types';
+import { FirstLevelMenuItem } from '../types/menu';
 import CoursesIcon from '@/public/assets/courses.svg';
 import ServicesIcon from '@/public/assets/services.svg';
 import BooksIcon from '@/public/assets/books.svg';

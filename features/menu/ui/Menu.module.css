@@ -45,9 +45,14 @@
 }
 
 .secondLevelBlock {
+	display: none;
 	padding: 0;
 	overflow: hidden;
 	list-style: none;
+}
+
+.secondLevelBlockOpened {
+	display: block;
 }
 
 .secondLevelBlockOpened:last-child {
@@ -61,7 +66,6 @@
 	font-weight: 500;
 	color: var(--gray-dark);
 	cursor: pointer;
-	outline-offset: -1px;
 }
 
 .thirdLevelActive,
