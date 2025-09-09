@@ -10,7 +10,7 @@ export const Sidebar = async ({ className, ...props }: SidebarProps) => {
 
 	return (
 		<div className={clsx(className, styles.sidebar)} {...props}>
-			<Logo className={styles.logo} />
+			<Logo />
 			<div>Поиск</div>
 			<Menu menu={menu} firstCategory={firstCategory} />
 		</div>

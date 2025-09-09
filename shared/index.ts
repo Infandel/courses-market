@@ -6,6 +6,8 @@ export { Rating } from './ui/rating/Rating';
 export { Tag } from './ui/tag/Tag';
 
 export { API_ROUTES } from './api/constants/endpoints';
+
 export { firstLevelMenu } from './helpers/menu';
+export { prettyPrice } from './helpers/prettyPrice';
 
 export type { FirstLevelMenuItem } from './types/menu';

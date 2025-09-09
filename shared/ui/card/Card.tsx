@@ -1,5 +1,4 @@
 import { CardProps } from './Card.props';
-import ArrowIcon from '@/public/assets/arrow.svg';
 import styles from './Card.module.css';
 import clsx from 'clsx';
 

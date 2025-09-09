@@ -26,7 +26,7 @@ export default async function Page({ params }: { params: Promise<{ type: string;
 
 	const products = await getProducts(page?.category || 'Photoshop');
 
-	if (!page || !products) return notFound();
+	if (!page) return notFound();
 
 	return <TopPage firstCategory={type === 'courses' ? 0 : 1} page={page} products={products} />;
 }
