@@ -1,4 +1,4 @@
-import { Htag, Button, Paragraph, Tag } from '@/shared';
+import { Htag, Button, Paragraph, Tag, Input, Textarea } from '@/shared';
 import type { Metadata } from 'next';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -34,6 +34,8 @@ export default async function Home() {
 			<Tag size='sm' color='primary'>
 				Primary
 			</Tag>
+			<Input placeholder='test' />
+			<Textarea placeholder='testy' />
 			{/* <Rating isEditable rating={counter} setRating={setCounter} /> */}
 		</div>
 	);

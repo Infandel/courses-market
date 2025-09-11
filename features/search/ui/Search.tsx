@@ -1,0 +1,43 @@
+'use client';
+
+import { KeyboardEvent, useState } from 'react';
+import { SearchProps } from './Search.props';
+import { Button, Input } from '@/shared';
+import GlassIcon from '../assets/glass.svg';
+import styles from './Search.module.css';
+import clsx from 'clsx';
+import { useRouter } from 'next/navigation';
+
+export const Search = ({ className, ...props }: SearchProps) => {
+	const [search, setSearch] = useState('');
+	const { push } = useRouter();
+
+	const goToSearch = () => {
+		const params = new URLSearchParams();
+
+		if (search) {
+			params.set('q', search);
+
+			push(`/search?${params.toString()}`);
+		}
+	};
+
+	const handleKeyDown = (e: KeyboardEvent) => {
+		if (e.key === 'Enter') goToSearch();
+	};
+
+	return (
+		<div className={clsx(className, styles.search)} {...props}>
+			<Input
+				className={styles.input}
+				placeholder='Поиск...'
+				value={search}
+				onChange={(e) => setSearch(e.target.value)}
+				onKeyDown={handleKeyDown}
+			/>
+			<Button appearance='primary' className={styles.button} onClick={goToSearch}>
+				<GlassIcon />
+			</Button>
+		</div>
+	);
+};
