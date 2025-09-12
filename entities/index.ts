@@ -12,4 +12,4 @@ export {
 	SortEnum,
 } from './page/interfaces/page.interface';
 export type { PageItem, MenuItem } from './menu/interfaces/menu.interface';
-export type { ProductModel } from './product/interfaces/product.interface';
+export type { ProductModel, ReviewModel } from './product/interfaces/product.interface';

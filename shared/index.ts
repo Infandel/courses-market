@@ -1,5 +1,6 @@
 export { Button } from './ui/button/Button';
 export { Card } from './ui/card/Card';
+export { Divider } from './ui/divider/Divider';
 export { Htag } from './ui/htag/Htag';
 export { Input } from './ui/input/Input';
 export { Paragraph } from './ui/paragraph/Paragraph';
@@ -9,7 +10,8 @@ export { Textarea } from './ui/textarea/Textarea';
 
 export { API_ROUTES } from './api/constants/endpoints';
 
-export { firstLevelMenu } from './helpers/menu';
+export { firstLevelMenu } from './helpers/firstLevelMenu';
+export { numDeclination } from './helpers/numDeclination';
 export { prettyPrice } from './helpers/prettyPrice';
 
 export type { FirstLevelMenuItem } from './types/menu';

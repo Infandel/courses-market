@@ -2,6 +2,8 @@
 	display: grid;
 	grid-template-columns: auto 1fr auto;
 	gap: 20px;
+
+	// place-items: baseline left;
 	place-items: baseline left;
 	margin-bottom: 30px;
 }
@@ -47,7 +49,7 @@
 	}
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 1020px) {
 	.title {
 		grid-template-columns: auto 1fr;
 	}

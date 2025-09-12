@@ -1,7 +1,7 @@
 'use client';
 
 import { Htag, Tag } from '@/shared';
-import { Advantages, HhData, Sort, sortReducer } from '@/features';
+import { Advantages, HhData, Product, Sort, sortReducer } from '@/features';
 import { TopPageProps } from './TopPage.props';
 import styles from './TopPage.module.scss';
 import { SortEnum, TopLevelCategory } from '@/entities';
@@ -32,7 +32,7 @@ export const TopPage = ({ page, products, firstCategory }: TopPageProps) => {
 				)}
 				<Sort sort={sort} setSort={setSort} />
 			</div>
-			<div>{sortedProducts && sortedProducts.map((p) => <div key={p._id}>{p.title}</div>)}</div>
+			<div>{sortedProducts && sortedProducts.map((p) => <Product key={p._id} product={p} />)}</div>
 
 			<div className={styles.hhTitle}>
 				<Htag tag='h2'>Вакансии - {page.category}</Htag>
