@@ -14,7 +14,7 @@ export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps) 
 					<span>Оценка:</span>
 					<Rating rating={0} />
 				</div>
-				<Textarea className={styles.description} placeholder='Текст отзыва' />
+				<Textarea className={styles.description} placeholder='Текст отзыва' rows={6} />
 				<div className={styles.submit}>
 					<Button appearance='primary' className={styles.description}>
 						Отправить
