@@ -8,7 +8,7 @@ export { Rating } from './ui/rating/Rating';
 export { Tag } from './ui/tag/Tag';
 export { Textarea } from './ui/textarea/Textarea';
 
-export { API_ROUTES } from './api/constants/endpoints';
+export { API_ROUTES } from './config/routes/routes';
 
 export { firstLevelMenu } from './helpers/firstLevelMenu';
 export { numDeclination } from './helpers/numDeclination';

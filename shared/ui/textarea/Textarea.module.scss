@@ -4,12 +4,12 @@
 	font-size: 16px;
 	line-height: 22px;
 	color: var(--black);
+	resize: none;
 	outline-color: var(--primary);
 	background: var(--white);
 	border: none;
 	border-radius: 5px;
 	box-shadow: 0 4px 4px rgb(0 0 0 / 5%);
-	resize: none;
 
 	&::placeholder {
 		color: var(--gray);

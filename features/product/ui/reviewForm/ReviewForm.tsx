@@ -3,18 +3,30 @@ import { Button, Input, Rating, Textarea } from '@/shared';
 import CloseIcon from '../../assets/close.svg';
 import styles from './ReviewForm.module.css';
 import clsx from 'clsx';
+import { useForm, Controller } from 'react-hook-form';
+import type { IReviewForm } from './ReviewForm.interface';
 
 export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps) => {
+	const { register, control, handleSubmit } = useForm<IReviewForm>();
+
+	const onSubmit = (data: IReviewForm) => {
+		console.log(data);
+	};
+
 	return (
-		<>
+		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className={clsx(styles.reviewForm, className)} {...props}>
-				<Input placeholder='Имя' />
-				<Input placeholder='Заголовок отзыва' className={styles.title} />
+				<Input {...register('name')} placeholder='Имя' />
+				<Input {...register('title')} placeholder='Заголовок отзыва' className={styles.title} />
 				<div className={styles.rating}>
 					<span>Оценка:</span>
-					<Rating rating={0} />
+					<Controller
+						control={control}
+						name='rating'
+						render={({ field }) => <Rating isEditable rating={field.value} setRating={field.onChange} />}
+					/>
 				</div>
-				<Textarea className={styles.description} placeholder='Текст отзыва' rows={6} />
+				<Textarea {...register('description')} className={styles.description} placeholder='Текст отзыва' rows={6} />
 				<div className={styles.submit}>
 					<Button appearance='primary' className={styles.description}>
 						Отправить
@@ -27,6 +39,6 @@ export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps) 
 				<div>Спасибо, ваш отзыв будет опубликован после проверки.</div>
 				<CloseIcon className={styles.close} />
 			</div>
-		</>
+		</form>
 	);
 };
