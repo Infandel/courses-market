@@ -83,7 +83,6 @@ export const Menu = ({ menu, firstCategory }: { menu: MenuItem[]; firstCategory:
 				className={clsx(styles.thirdLevel, {
 					[styles.thirdLevelActive]: `/${route}/${p.alias}` === pathname,
 				})}
-				scroll={false}
 			>
 				{p.category}
 			</Link>

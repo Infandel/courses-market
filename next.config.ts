@@ -10,7 +10,10 @@ const nextConfig: NextConfig = {
 		},
 	},
 	images: {
-		remotePatterns: [new URL('https://old-images.hb.ru-msk.vkcs.cloud/**')],
+		remotePatterns: [
+			new URL('https://old-images.hb.ru-msk.vkcs.cloud/**'),
+			new URL('https://old-images.hb.ru-msk.vkcs.cloudhttp/**'),
+		],
 	},
 	webpack(config) {
 		config.module.rules.push({
