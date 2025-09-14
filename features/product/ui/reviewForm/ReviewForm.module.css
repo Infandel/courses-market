@@ -26,23 +26,34 @@
 	gap: 20px;
 }
 
-.success {
+.panel {
 	position: relative;
 	padding: 20px;
 	margin-top: 20px;
-	background: var(--green-light);
 	border-radius: 5px;
+}
+
+.success {
+	background: var(--green-light);
 
 	.successTitle {
 		font-weight: bold;
 	}
+}
 
-	.close {
-		position: absolute;
-		top: 20px;
-		right: 20px;
-		cursor: pointer;
-	}
+.close {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	cursor: pointer;
+}
+
+.error {
+	background: var(--red-light);
+}
+
+.error .close line {
+	stroke: var(--red);
 }
 
 @media screen and (max-width: 1100px) {

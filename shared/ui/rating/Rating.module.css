@@ -3,6 +3,7 @@
 }
 
 .star {
+	position: relative;
 	display: flex;
 }
 
@@ -13,10 +14,6 @@
 
 .editable {
 	cursor: pointer;
-}
-
-.ratingWrapper {
-	position: relative;
 }
 
 .errorMessage {

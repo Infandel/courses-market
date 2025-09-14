@@ -7,6 +7,6 @@ export const API_ROUTES = {
 		find: process.env.NEXT_PUBLIC_DOMAIN + '/api/product/find',
 	},
 	review: {
-		createDemo: process.env.NEXT_PUBLIC_DOMAIN + '/api/product/create-demo',
+		createDemo: process.env.NEXT_PUBLIC_DOMAIN + '/api/review/create-demo',
 	},
 };

@@ -5,15 +5,24 @@ import { Button, Card, Divider, numDeclination, prettyPrice, Rating, Tag } from 
 import Image from 'next/image';
 import styles from './Product.module.css';
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Review } from '../review/Review';
 import { ReviewForm } from '../reviewForm/ReviewForm';
 
-export const Product = ({ product }: ProductProps) => {
+export const Product = ({ product, className, ...props }: ProductProps) => {
 	const [isReviewOpened, setIsReviewOpened] = useState(false);
+	const reviewRef = useRef<HTMLDivElement>(null);
+
+	const scrollToReview = () => {
+		setIsReviewOpened(true);
+		reviewRef.current?.scrollIntoView({
+			behavior: 'smooth',
+			block: 'start',
+		});
+	};
 
 	return (
-		<>
+		<div className={className} {...props}>
 			<Card className={styles.product}>
 				<Image className={styles.logo} src={product.image} alt={product.title} width={70} height={70} />
 				<div className={styles.title}>{product.title}</div>
@@ -41,7 +50,9 @@ export const Product = ({ product }: ProductProps) => {
 				<div className={styles.priceTitle}>цена</div>
 				<div className={styles.creditTitle}>в кредит</div>
 				<div className={styles.rateTitle}>
-					{product.reviewCount} {numDeclination(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
+					<a href='#ref' onClick={scrollToReview}>
+						{product.reviewCount} {numDeclination(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
+					</a>
 				</div>
 				<Divider className={styles.hr} />
 				<div className={styles.description}>{product.description}</div>
@@ -90,6 +101,7 @@ export const Product = ({ product }: ProductProps) => {
 					[styles.closedReview]: !isReviewOpened,
 				})}
 				color='blue'
+				ref={reviewRef}
 			>
 				{product.reviews.map((r) => (
 					<div key={r._id}>
@@ -99,6 +111,6 @@ export const Product = ({ product }: ProductProps) => {
 				))}
 				<ReviewForm productId={product._id} />
 			</Card>
-		</>
+		</div>
 	);
 };

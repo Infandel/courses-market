@@ -1,5 +1,6 @@
 import { ProductModel } from '@/entities';
+import { DetailedHTMLProps, HTMLAttributes } from 'react';
 
-export interface ProductProps {
+export interface ProductProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
 	product: ProductModel;
 }

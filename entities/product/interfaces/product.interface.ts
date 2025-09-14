@@ -12,6 +12,8 @@ export interface ReviewModel {
 	createdAt: Date;
 }
 
+export type IReviewForm = Omit<ReviewModel, '_id' | 'createdAt'>;
+
 export interface ProductModel {
 	_id: string;
 	categories: string[];
