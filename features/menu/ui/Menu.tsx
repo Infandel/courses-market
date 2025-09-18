@@ -7,10 +7,35 @@ import Link from 'next/link';
 import { FirstLevelMenuItem, firstLevelMenu } from '@/shared';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 export const Menu = ({ menu, firstCategory }: { menu: MenuItem[]; firstCategory: number }) => {
 	const pathname = usePathname();
 	const [currentMenu, setCurrentMenu] = useState(menu);
+
+	const variants = {
+		visible: {
+			marginBottom: 20,
+			transition: {
+				when: 'beforeChildren',
+				staggerChildren: 0.1,
+			},
+		},
+		hidden: {
+			marginBottom: 0,
+		},
+	};
+
+	const variantsChildren = {
+		visible: {
+			opacity: 1,
+			height: 29,
+		},
+		hidden: {
+			opacity: 0,
+			height: 0,
+		},
+	};
 
 	const openSecondLevel = (secondCategory: string) => {
 		setCurrentMenu(
@@ -60,13 +85,15 @@ export const Menu = ({ menu, firstCategory }: { menu: MenuItem[]; firstCategory:
 							<div className={styles.secondLevel} onClick={() => openSecondLevel(m._id.secondCategory)}>
 								{m._id.secondCategory}
 							</div>
-							<div
-								className={clsx(styles.secondLevelBlock, {
-									[styles.secondLevelBlockOpened]: m.isOpened,
-								})}
+							<motion.div
+								layout
+								initial={m.isOpened ? 'visible' : 'hidden'}
+								animate={m.isOpened ? 'visible' : 'hidden'}
+								variants={variants}
+								className={clsx(styles.secondLevelBlock)}
 							>
 								{buildThirdLevel(m.pages, menuItem.route)}
-							</div>
+							</motion.div>
 						</div>
 					);
 				})}
@@ -77,15 +104,16 @@ export const Menu = ({ menu, firstCategory }: { menu: MenuItem[]; firstCategory:
 	// Most inner route
 	const buildThirdLevel = (pages: PageItem[], route: string) => {
 		return pages.map((p) => (
-			<Link
-				key={p.alias}
-				href={`/${route}/${p.alias}`}
-				className={clsx(styles.thirdLevel, {
-					[styles.thirdLevelActive]: `/${route}/${p.alias}` === pathname,
-				})}
-			>
-				{p.category}
-			</Link>
+			<motion.div key={p.alias} variants={variantsChildren}>
+				<Link
+					href={`/${route}/${p.alias}`}
+					className={clsx(styles.thirdLevel, {
+						[styles.thirdLevelActive]: `/${route}/${p.alias}` === pathname,
+					})}
+				>
+					{p.category}
+				</Link>
+			</motion.div>
 		));
 	};
 
