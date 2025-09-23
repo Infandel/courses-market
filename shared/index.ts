@@ -2,6 +2,7 @@ export { Button } from './ui/button/Button';
 export { Card } from './ui/card/Card';
 export { Divider } from './ui/divider/Divider';
 export { Htag } from './ui/htag/Htag';
+export { IconButton } from './ui/iconButton/IconButton';
 export { Input } from './ui/input/Input';
 export { Paragraph } from './ui/paragraph/Paragraph';
 export { Rating } from './ui/rating/Rating';

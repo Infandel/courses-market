@@ -2,8 +2,7 @@
 
 import { useEffect } from 'react';
 import styles from './UpButton.module.css';
-import UpIcon from '../assets/up.svg';
-import { useScrollY } from '@/shared';
+import { IconButton, useScrollY } from '@/shared';
 import { motion, useAnimate, usePresence } from 'framer-motion';
 
 export const UpButton = () => {
@@ -37,8 +36,8 @@ export const UpButton = () => {
 	};
 
 	return (
-		<motion.button ref={scope} className={styles.upButton} onClick={scrollToTop} initial={{ opacity: 0 }}>
-			<UpIcon />
-		</motion.button>
+		<motion.div ref={scope} className={styles.upButton} initial={{ opacity: 0 }}>
+			<IconButton appearance='primary' icon='up' onClick={scrollToTop} />
+		</motion.div>
 	);
 };

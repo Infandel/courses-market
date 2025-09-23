@@ -11,6 +11,7 @@ module.exports = {
 			},
 		],
 		'media-feature-range-notation': 'prefix',
+		'color-function-notation': 'legacy',
 	},
 	overrides: [
 		{
