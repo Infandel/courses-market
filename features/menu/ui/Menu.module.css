@@ -51,14 +51,10 @@
 
 .thirdLevel {
 	display: block;
-	width: 200px; /* for ellpsis, cause some sections got too long names */
 	margin-bottom: 10px;
-	overflow: hidden;
-	text-overflow: ellipsis;
 	font-size: 14px;
 	font-weight: 500;
 	color: var(--gray-dark);
-	white-space: nowrap;
 	cursor: pointer;
 }
 

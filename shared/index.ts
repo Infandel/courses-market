@@ -8,10 +8,12 @@ export { Rating } from './ui/rating/Rating';
 export { Tag } from './ui/tag/Tag';
 export { Textarea } from './ui/textarea/Textarea';
 
-export { API_ROUTES } from './config/routes/routes';
+export { API_ROUTES } from './config/routes';
 
 export { firstLevelMenu } from './helpers/firstLevelMenu';
 export { numDeclination } from './helpers/numDeclination';
 export { prettyPrice } from './helpers/prettyPrice';
+
+export { useScrollY } from './hooks/useScrollY';
 
 export type { FirstLevelMenuItem } from './types/menu';

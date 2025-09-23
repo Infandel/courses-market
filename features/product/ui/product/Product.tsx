@@ -10,10 +10,21 @@ import { Review } from '../review/Review';
 import { ReviewForm } from '../reviewForm/ReviewForm';
 import { motion } from 'framer-motion';
 
-export const Product = motion(
+export const Product = motion.create(
 	forwardRef(function Product({ product, ...props }: ProductProps, ref: ForwardedRef<HTMLDivElement>) {
 		const [isReviewOpened, setIsReviewOpened] = useState(false);
 		const reviewRef = useRef<HTMLDivElement>(null);
+
+		const variants = {
+			visible: {
+				opacity: 1,
+				height: 'auto',
+			},
+			hidden: {
+				opacity: 0,
+				height: 0,
+			},
+		};
 
 		const scrollToReview = () => {
 			setIsReviewOpened(true);
@@ -97,22 +108,17 @@ export const Product = motion(
 						</Button>
 					</div>
 				</Card>
-				<Card
-					className={clsx({
-						[styles.openedReview]: isReviewOpened,
-						[styles.closedReview]: !isReviewOpened,
-					})}
-					color='blue'
-					ref={reviewRef}
-				>
-					{product.reviews.map((r) => (
-						<div key={r._id}>
-							<Review review={r} />
-							<Divider />
-						</div>
-					))}
-					<ReviewForm productId={product._id} />
-				</Card>
+				<motion.div animate={isReviewOpened ? 'visible' : 'hidden'} variants={variants} initial='hidden'>
+					<Card className={styles.reviews} color='blue' ref={reviewRef}>
+						{product.reviews.map((r) => (
+							<div key={r._id}>
+								<Review review={r} />
+								<Divider />
+							</div>
+						))}
+						<ReviewForm productId={product._id} />
+					</Card>
+				</motion.div>
 			</div>
 		);
 	})

@@ -29,7 +29,7 @@ export const Menu = ({ menu, firstCategory }: { menu: MenuItem[]; firstCategory:
 	const variantsChildren = {
 		visible: {
 			opacity: 1,
-			height: 29,
+			height: 'fit-content',
 		},
 		hidden: {
 			opacity: 0,
