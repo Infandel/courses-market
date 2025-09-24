@@ -30,6 +30,7 @@ export const Menu = ({ menu, firstCategory }: { menu: MenuItem[]; firstCategory:
 		visible: {
 			opacity: 1,
 			height: 'fit-content',
+			transition: { duration: 0.2 },
 		},
 		hidden: {
 			opacity: 0,

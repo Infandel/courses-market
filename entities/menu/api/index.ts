@@ -1,3 +1,5 @@
+'use server';
+
 import { API_ROUTES } from '@/shared';
 import { MenuItem } from '../interfaces/menu.interface';
 
