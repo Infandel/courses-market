@@ -3,7 +3,7 @@
 import { KeyboardEvent, useState } from 'react';
 import { SearchProps } from './Search.props';
 import { Button, Input } from '@/shared';
-import GlassIcon from '../assets/glass.svg';
+import GlassIcon from '../../assets/glass.svg';
 import styles from './Search.module.css';
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';

@@ -26,21 +26,18 @@
 	grid-area: footer;
 }
 
-@media (max-width: 860px) {
+@media screen and (max-width: 860px) {
 	.wrapper {
 		grid-template-areas:
 			'header'
 			'body'
 			'footer';
 		grid-template-columns: minmax(320px, 1fr);
+		gap: 10px;
 	}
 
 	.sidebar {
 		display: none;
-	}
-
-	.header {
-		display: block;
 	}
 
 	.body {

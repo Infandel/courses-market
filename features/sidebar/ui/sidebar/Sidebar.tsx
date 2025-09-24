@@ -2,8 +2,9 @@ import { getMenu } from '@/entities';
 import { SidebarProps } from './Sidebar.props';
 import styles from './Sidebar.module.css';
 import clsx from 'clsx';
-import { Menu, Search } from '@/features';
 import Logo from '@/public/assets/logo.svg';
+import { Search } from '../search/Search';
+import { Menu } from '../menu/Menu';
 
 export const Sidebar = async ({ className, ...props }: SidebarProps) => {
 	const { menu, firstCategory } = await getMenu();

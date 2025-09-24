@@ -1,7 +1,7 @@
-import { Sidebar, Header, Footer } from '@/widgets';
+import { Header, Footer } from '@/widgets';
 import { ReactNode } from 'react';
 import styles from './layout.module.css';
-import { UpButton } from '@/features';
+import { Sidebar, UpButton } from '@/features';
 
 export default function MainLayout({ children }: { children: ReactNode }) {
 	return (
