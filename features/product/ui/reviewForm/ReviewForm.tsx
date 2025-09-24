@@ -30,7 +30,7 @@ export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps) 
 	};
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
+		<form className={styles.reviewFormWrapper} onSubmit={handleSubmit(onSubmit)}>
 			<div className={clsx(styles.reviewForm, className)} {...props}>
 				<Input
 					{...register('name', { required: { value: true, message: 'Заполните имя' } })}

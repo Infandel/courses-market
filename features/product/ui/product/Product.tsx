@@ -19,10 +19,12 @@ export const Product = motion.create(
 			visible: {
 				opacity: 1,
 				height: 'auto',
+				display: 'block',
 			},
 			hidden: {
 				opacity: 0,
 				height: 0,
+				display: 'none',
 			},
 		};
 
