@@ -15,11 +15,11 @@ export const Menu = ({ menu, firstCategory }: { menu: MenuItem[]; firstCategory:
 
 	const variants = {
 		visible: {
-			marginBottom: 20,
 			transition: {
 				when: 'beforeChildren',
 				staggerChildren: 0.1,
 			},
+			marginBottom: 5,
 		},
 		hidden: {
 			marginBottom: 0,

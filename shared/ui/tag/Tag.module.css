@@ -1,6 +1,7 @@
 .tag {
 	box-sizing: border-box;
 	display: inline-block;
+	align-self: center;
 	margin-right: 5px;
 	border-radius: 20px;
 }
@@ -14,7 +15,7 @@
 .md {
 	padding: 5px 10px;
 	font-size: 14px;
-	line-height: 14px;
+	line-height: 13px;
 }
 
 .ghost {
@@ -30,7 +31,7 @@
 .grey {
 	font-weight: bold;
 	color: var(--white);
-	background: #b3c0d9;
+	background: #51648c;
 }
 
 .green {
