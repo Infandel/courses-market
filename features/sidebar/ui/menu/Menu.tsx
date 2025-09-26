@@ -6,7 +6,7 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { FirstLevelMenuItem, firstLevelMenu } from '@/shared';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { KeyboardEvent, useState } from 'react';
 import { motion } from 'framer-motion';
 
 export const Menu = ({ menu, firstCategory }: { menu: MenuItem[]; firstCategory: number }) => {
@@ -49,6 +49,13 @@ export const Menu = ({ menu, firstCategory }: { menu: MenuItem[]; firstCategory:
 		);
 	};
 
+	const openSecondLevelKey = (e: KeyboardEvent, secondCategory: string) => {
+		if (e.code === 'Space' || e.code === 'Enter') {
+			e.preventDefault();
+			openSecondLevel(secondCategory);
+		}
+	};
+
 	// 1st level (top tier) route
 	const buildFirstLevel = () => {
 		return (
@@ -81,19 +88,26 @@ export const Menu = ({ menu, firstCategory }: { menu: MenuItem[]; firstCategory:
 						m.isOpened = true;
 					}
 
+					const animationReasoning = m.isOpened ? 'visible' : 'hidden';
+
 					return (
 						<div key={m._id.secondCategory}>
-							<div className={styles.secondLevel} onClick={() => openSecondLevel(m._id.secondCategory)}>
+							<div
+								tabIndex={0}
+								onKeyDown={(e) => openSecondLevelKey(e, m._id.secondCategory)}
+								className={styles.secondLevel}
+								onClick={() => openSecondLevel(m._id.secondCategory)}
+							>
 								{m._id.secondCategory}
 							</div>
 							<motion.div
 								layout
-								initial={m.isOpened ? 'visible' : 'hidden'}
-								animate={m.isOpened ? 'visible' : 'hidden'}
+								initial={animationReasoning}
+								animate={animationReasoning}
 								variants={variants}
 								className={clsx(styles.secondLevelBlock)}
 							>
-								{buildThirdLevel(m.pages, menuItem.route)}
+								{buildThirdLevel(m.pages, menuItem.route, m.isOpened ?? false)}
 							</motion.div>
 						</div>
 					);
@@ -103,10 +117,11 @@ export const Menu = ({ menu, firstCategory }: { menu: MenuItem[]; firstCategory:
 	};
 
 	// Most inner route
-	const buildThirdLevel = (pages: PageItem[], route: string) => {
+	const buildThirdLevel = (pages: PageItem[], route: string, isOpened: boolean) => {
 		return pages.map((p) => (
 			<motion.div key={p.alias} variants={variantsChildren}>
 				<Link
+					tabIndex={isOpened ? 0 : -1}
 					href={`/${route}/${p.alias}`}
 					className={clsx(styles.thirdLevel, {
 						[styles.thirdLevelActive]: `/${route}/${p.alias}` === pathname,

@@ -9,12 +9,12 @@ import clsx from 'clsx';
 export const Sort = ({ sort, setSort, className, ...props }: SortProps) => {
 	return (
 		<div className={clsx(styles.sort, className)} {...props}>
-			<span className={clsx({ [styles.active]: sort === SortEnum.Rating })} onClick={() => setSort(SortEnum.Rating)}>
+			<button className={clsx({ [styles.active]: sort === SortEnum.Rating })} onClick={() => setSort(SortEnum.Rating)}>
 				<SortIcon className={styles.sortIcon} /> По рейтингу
-			</span>
-			<span className={clsx({ [styles.active]: sort === SortEnum.Price })} onClick={() => setSort(SortEnum.Price)}>
+			</button>
+			<button className={clsx({ [styles.active]: sort === SortEnum.Price })} onClick={() => setSort(SortEnum.Price)}>
 				<SortIcon className={styles.sortIcon} /> По цене
-			</span>
+			</button>
 		</div>
 	);
 };

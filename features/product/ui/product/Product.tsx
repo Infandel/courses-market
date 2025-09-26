@@ -30,9 +30,13 @@ export const Product = motion.create(
 
 		const scrollToReview = () => {
 			setIsReviewOpened(true);
-			reviewRef.current?.scrollIntoView({
-				behavior: 'smooth',
-				block: 'start',
+			// Because display none and display block works in parallel and element can't be focused, until it's block again
+			setTimeout(() => {
+				reviewRef.current?.scrollIntoView({
+					behavior: 'smooth',
+					block: 'start',
+				});
+				reviewRef.current?.focus();
 			});
 		};
 
@@ -111,7 +115,7 @@ export const Product = motion.create(
 					</div>
 				</Card>
 				<motion.div animate={isReviewOpened ? 'visible' : 'hidden'} variants={variants} initial='hidden'>
-					<Card className={styles.reviews} color='blue' ref={reviewRef}>
+					<Card className={styles.reviews} color='blue' ref={reviewRef} tabIndex={0}>
 						{product.reviews.map((r) => (
 							<div key={r._id}>
 								<Review review={r} />

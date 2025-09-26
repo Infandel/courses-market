@@ -1,3 +1,5 @@
+'use client';
+
 import { ButtonProps } from './Button.props';
 import ArrowIcon from '@/public/assets/arrow.svg';
 import styles from './Button.module.css';
@@ -11,7 +13,7 @@ export const Button = ({ appearance, arrow = 'none', children, className, ...pro
 				[styles.primary]: appearance === 'primary',
 				[styles.ghost]: appearance === 'ghost',
 			})}
-			whileHover={{ scale: 1.05 }}
+			whileHover={{ scale: 1.03 }}
 			{...props}
 		>
 			{children}
