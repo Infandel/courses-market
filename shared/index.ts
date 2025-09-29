@@ -4,7 +4,6 @@ export { Divider } from './ui/divider/Divider';
 export { Htag } from './ui/htag/Htag';
 export { IconButton } from './ui/iconButton/IconButton';
 export { Input } from './ui/input/Input';
-export { Paragraph } from './ui/paragraph/Paragraph';
 export { Rating } from './ui/rating/Rating';
 export { Tag } from './ui/tag/Tag';
 export { Textarea } from './ui/textarea/Textarea';

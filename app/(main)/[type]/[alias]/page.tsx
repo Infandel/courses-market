@@ -8,11 +8,18 @@ export async function generateMetadata({
 }: {
 	params: Promise<{ type: string; alias: string }>;
 }): Promise<Metadata> {
-	const { alias } = await params;
+	const { alias, type } = await params;
 	const page = await getPage(alias);
 
 	return {
 		title: page?.metaTitle,
+		description: page?.metaDescription,
+		openGraph: {
+			title: page?.metaTitle,
+			description: page?.metaDescription,
+			url: `/${type}/${alias}`,
+			type: 'article',
+		},
 	};
 }
 
