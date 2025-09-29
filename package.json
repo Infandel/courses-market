@@ -8,7 +8,8 @@
 		"build": "next build --turbopack",
 		"start": "next start",
 		"lint": "eslint",
-		"stylelint": "stylelint **/*.{css,scss} --fix"
+		"stylelint": "stylelint **/*.{css,scss} --fix",
+		"prepare": "husky"
 	},
 	"dependencies": {
 		"clsx": "^2.1.1",
@@ -28,6 +29,7 @@
 		"@types/react-dom": "^19",
 		"eslint": "^9",
 		"eslint-config-next": "15.5.1",
+		"husky": "^9.1.7",
 		"postcss-scss": "^4.0.9",
 		"stylelint": "^16.23.1",
 		"stylelint-config-recess-order": "^7.2.0",
