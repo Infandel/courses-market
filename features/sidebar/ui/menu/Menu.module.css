@@ -45,13 +45,14 @@
 }
 
 .secondLevelBlock {
+	margin-bottom: 5px;
 	overflow: hidden;
 	list-style: none;
 }
 
 .thirdLevel {
 	display: block;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 	font-size: 14px;
 	font-weight: 600;
 	color: var(--gray-dark);

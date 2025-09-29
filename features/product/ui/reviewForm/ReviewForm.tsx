@@ -14,6 +14,7 @@ export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps) 
 		handleSubmit,
 		formState: { errors },
 		reset,
+		clearErrors,
 	} = useForm<IReviewForm>();
 	const [isSuccess, setIsSuccess] = useState(false);
 	const [error, setError] = useState<string | null>(null);
@@ -36,12 +37,14 @@ export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps) 
 					{...register('name', { required: { value: true, message: 'Заполните имя' } })}
 					error={errors.name}
 					placeholder='Имя'
+					aria-invalid={errors.name ? true : false}
 				/>
 				<Input
 					{...register('title', { required: { value: true, message: 'Заполните заголовок' } })}
 					error={errors.title}
 					placeholder='Заголовок отзыва'
 					className={styles.title}
+					aria-invalid={errors.title ? true : false}
 				/>
 				<div className={styles.rating}>
 					<span>Оценка:</span>
@@ -66,25 +69,30 @@ export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps) 
 					placeholder='Текст отзыва'
 					rows={6}
 					className={styles.description}
+					aria-invalid={errors.description ? true : false}
 				/>
 				<div className={styles.submit}>
-					<Button appearance='primary' className={styles.description}>
+					<Button appearance='primary' className={styles.description} onClick={() => clearErrors()}>
 						Отправить
 					</Button>
 					<span className={styles.info}>* Перед публикацией отзыв пройдет предварительную модерацию и проверку</span>
 				</div>
 			</div>
 			{isSuccess && (
-				<div className={clsx(styles.panel, styles.success)}>
+				<div className={clsx(styles.panel, styles.success)} role='alert'>
 					<div className={styles.successTitle}>Ваш отзыв отправлен</div>
 					<div>Спасибо, ваш отзыв будет опубликован после проверки.</div>
-					<CloseIcon className={styles.close} onClick={() => setIsSuccess(false)} />
+					<button className={styles.close} onClick={() => setIsSuccess(false)} aria-label='Закрыть оповещение'>
+						<CloseIcon />
+					</button>
 				</div>
 			)}
 			{error && (
-				<div className={clsx(styles.panel, styles.error)}>
+				<div className={clsx(styles.panel, styles.error)} role='alert'>
 					{error}
-					<CloseIcon className={styles.close} onClick={() => setError(null)} />
+					<button className={styles.close} onClick={() => setError(null)} aria-label='Закрыть оповещение'>
+						<CloseIcon />
+					</button>
 				</div>
 			)}
 		</form>

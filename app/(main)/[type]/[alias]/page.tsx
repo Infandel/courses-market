@@ -3,9 +3,16 @@ import { TopPage } from '@/widgets';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ type: string; alias: string }>;
+}): Promise<Metadata> {
+	const { alias } = await params;
+	const page = await getPage(alias);
+
 	return {
-		title: 'Course',
+		title: page?.metaTitle,
 	};
 }
 

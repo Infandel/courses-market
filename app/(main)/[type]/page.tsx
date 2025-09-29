@@ -8,5 +8,5 @@ export default async function Page({ params }: { params: Promise<{ type: string 
 
 	if (!firstCategoryItem) return notFound();
 
-	return <div>My Post: {type}</div>;
+	return <div>Ты находишься в разделе: {type}. Рекомендуется выбрать конкретный подраздел</div>;
 }

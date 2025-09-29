@@ -7,18 +7,21 @@ import Link from 'next/link';
 import { FirstLevelMenuItem, firstLevelMenu } from '@/shared';
 import { usePathname } from 'next/navigation';
 import { KeyboardEvent, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 export const Menu = ({ menu, firstCategory }: { menu: MenuItem[]; firstCategory: number }) => {
 	const pathname = usePathname();
 	const [currentMenu, setCurrentMenu] = useState(menu);
+	const shouldReduceMotion = useReducedMotion();
 
 	const variants = {
 		visible: {
-			transition: {
-				when: 'beforeChildren',
-				staggerChildren: 0.1,
-			},
+			transition: shouldReduceMotion
+				? {}
+				: {
+						when: 'beforeChildren',
+						staggerChildren: 0.1,
+				  },
 			marginBottom: 5,
 		},
 		hidden: {
@@ -30,11 +33,12 @@ export const Menu = ({ menu, firstCategory }: { menu: MenuItem[]; firstCategory:
 		visible: {
 			opacity: 1,
 			height: 'fit-content',
-			transition: { duration: 0.2 },
+			display: 'block',
 		},
 		hidden: {
 			opacity: 0,
 			height: 0,
+			display: 'none',
 		},
 	};
 
@@ -59,10 +63,10 @@ export const Menu = ({ menu, firstCategory }: { menu: MenuItem[]; firstCategory:
 	// 1st level (top tier) route
 	const buildFirstLevel = () => {
 		return (
-			<>
+			<ul className={styles.firstLevelList}>
 				{firstLevelMenu.map((m) => (
-					<div key={m.route}>
-						<Link href={`/${m.route}`}>
+					<li key={m.route}>
+						<Link href={`/${m.route}`} aria-expanded={m.id === firstCategory}>
 							<div
 								className={clsx(styles.firstLevel, {
 									[styles.firstLevelActive]: m.id === firstCategory,
@@ -73,16 +77,16 @@ export const Menu = ({ menu, firstCategory }: { menu: MenuItem[]; firstCategory:
 							</div>
 						</Link>
 						{m.id === firstCategory && buildSecondLevel(m)}
-					</div>
+					</li>
 				))}
-			</>
+			</ul>
 		);
 	};
 
 	// 2nd level deep route
 	const buildSecondLevel = (menuItem: FirstLevelMenuItem) => {
 		return (
-			<div className={styles.secondBlock}>
+			<ul className={styles.secondBlock}>
 				{currentMenu.map((m) => {
 					if (m.pages.map((p) => p.alias).includes(pathname.split('/').at(-1) as string)) {
 						m.isOpened = true;
@@ -91,16 +95,17 @@ export const Menu = ({ menu, firstCategory }: { menu: MenuItem[]; firstCategory:
 					const animationReasoning = m.isOpened ? 'visible' : 'hidden';
 
 					return (
-						<div key={m._id.secondCategory}>
-							<div
+						<li key={m._id.secondCategory}>
+							<button
 								tabIndex={0}
 								onKeyDown={(e) => openSecondLevelKey(e, m._id.secondCategory)}
 								className={styles.secondLevel}
 								onClick={() => openSecondLevel(m._id.secondCategory)}
+								aria-expanded={m.isOpened}
 							>
 								{m._id.secondCategory}
-							</div>
-							<motion.div
+							</button>
+							<motion.ul
 								layout
 								initial={animationReasoning}
 								animate={animationReasoning}
@@ -108,30 +113,35 @@ export const Menu = ({ menu, firstCategory }: { menu: MenuItem[]; firstCategory:
 								className={clsx(styles.secondLevelBlock)}
 							>
 								{buildThirdLevel(m.pages, menuItem.route, m.isOpened ?? false)}
-							</motion.div>
-						</div>
+							</motion.ul>
+						</li>
 					);
 				})}
-			</div>
+			</ul>
 		);
 	};
 
 	// Most inner route
 	const buildThirdLevel = (pages: PageItem[], route: string, isOpened: boolean) => {
 		return pages.map((p) => (
-			<motion.div key={p.alias} variants={variantsChildren}>
+			<motion.li key={p.alias} variants={variantsChildren}>
 				<Link
 					tabIndex={isOpened ? 0 : -1}
 					href={`/${route}/${p.alias}`}
 					className={clsx(styles.thirdLevel, {
 						[styles.thirdLevelActive]: `/${route}/${p.alias}` === pathname,
 					})}
+					aria-current={`/${route}/${p.alias}` === pathname ? 'page' : false}
 				>
 					{p.category}
 				</Link>
-			</motion.div>
+			</motion.li>
 		));
 	};
 
-	return <div className={styles.menu}>{buildFirstLevel()}</div>;
+	return (
+		<nav className={styles.menu} role='navigation'>
+			{buildFirstLevel()}
+		</nav>
+	);
 };

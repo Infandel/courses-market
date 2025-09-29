@@ -6,12 +6,15 @@ import { TopPageProps } from './TopPage.props';
 import styles from './TopPage.module.scss';
 import { SortEnum, TopLevelCategory } from '@/entities';
 import { useReducer } from 'react';
+import { useReducedMotion } from 'framer-motion';
 
 export const TopPage = ({ page, products, firstCategory }: TopPageProps) => {
 	const [{ products: sortedProducts, sort }, dispatchSort] = useReducer(sortReducer, {
 		products: products || [],
 		sort: SortEnum.Rating,
 	});
+
+	const shouldReduceMotion = useReducedMotion(); // for a11y
 
 	const setSort = (sort: SortEnum) => {
 		dispatchSort({ type: sort });
@@ -22,13 +25,18 @@ export const TopPage = ({ page, products, firstCategory }: TopPageProps) => {
 			<div className={styles.title}>
 				<Htag tag='h1'>{page.title}</Htag>
 				{products && (
-					<Tag color='grey' size='md'>
+					<Tag color='grey' size='md' aria-label={products.length + 'элементов'}>
 						{products.length}
 					</Tag>
 				)}
 				<Sort sort={sort} setSort={setSort} />
 			</div>
-			<div>{sortedProducts && sortedProducts.map((p) => <Product key={p._id} layout product={p} />)}</div>
+			<div role='list'>
+				{sortedProducts &&
+					sortedProducts.map((p) => (
+						<Product role='listitem' key={p._id} layout={shouldReduceMotion ? false : true} product={p} />
+					))}
+			</div>
 
 			<div className={styles.hhTitle}>
 				<Htag tag='h2'>Вакансии - {page.category}</Htag>

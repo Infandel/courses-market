@@ -18,7 +18,7 @@ export const Product = motion.create(
 		const variants = {
 			visible: {
 				opacity: 1,
-				height: 'auto',
+				height: '100%',
 				display: 'block',
 			},
 			hidden: {
@@ -40,24 +40,32 @@ export const Product = motion.create(
 			});
 		};
 
+		const anyRating = product.reviewAvg ?? product.initialRating;
+
 		return (
 			<div className={styles.productWrapper} {...props} ref={ref}>
 				<Card className={styles.product}>
 					<Image className={styles.logo} src={product.image} alt={product.title} width={70} height={70} />
 					<div className={styles.title}>{product.title}</div>
 					<div className={styles.price}>
-						{prettyPrice(product.price)}
+						<span>
+							<span className='visuallyHidden'>цена</span>
+							{prettyPrice(product.price)}
+						</span>
 						{product.oldPrice && (
 							<Tag className={styles.oldPrice} size='sm' color='green'>
+								<span className='visuallyHidden'>скидка</span>
 								{prettyPrice(product.price - product.oldPrice)}
 							</Tag>
 						)}
 					</div>
 					<div className={styles.credit}>
+						<span className='visuallyHidden'>кредит</span>
 						{prettyPrice(product.credit)}/<span className={styles.month}>мес</span>
 					</div>
 					<div className={styles.rating}>
-						<Rating rating={product.reviewAvg ?? product.initialRating} />
+						<span className='visuallyHidden'>{'рейтинг' + anyRating}</span>
+						<Rating rating={anyRating} />
 					</div>
 					<div className={styles.tags}>
 						{product.categories.map((c) => (
@@ -66,8 +74,12 @@ export const Product = motion.create(
 							</Tag>
 						))}
 					</div>
-					<div className={styles.priceTitle}>цена</div>
-					<div className={styles.creditTitle}>в кредит</div>
+					<div className={styles.priceTitle} aria-hidden='true'>
+						цена
+					</div>
+					<div className={styles.creditTitle} aria-hidden='true'>
+						в кредит
+					</div>
 					<div className={styles.rateTitle}>
 						<a href='#ref' onClick={scrollToReview}>
 							{product.reviewCount} {numDeclination(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
@@ -109,6 +121,7 @@ export const Product = motion.create(
 							appearance='ghost'
 							arrow={isReviewOpened ? 'down' : 'right'}
 							onClick={() => setIsReviewOpened(!isReviewOpened)}
+							aria-expanded={isReviewOpened}
 						>
 							Читать отзывы
 						</Button>
