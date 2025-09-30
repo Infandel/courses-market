@@ -9,6 +9,7 @@ import { MenuItem } from '@/entities';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
 export const MobileSidebar = ({ menu, firstCategory }: { menu: MenuItem[]; firstCategory: number }) => {
 	const [isOpened, setIsOpened] = useState(false);
@@ -35,7 +36,9 @@ export const MobileSidebar = ({ menu, firstCategory }: { menu: MenuItem[]; first
 
 	return (
 		<div className={styles.mobileSidebar}>
-			<Logo />
+			<Link href={'/'}>
+				<Logo />
+			</Link>
 			<IconButton appearance='white' icon='burger' onClick={() => setIsOpened(true)} />
 			<motion.div
 				className={styles.mobileMenu}

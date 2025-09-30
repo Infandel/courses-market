@@ -42,3 +42,12 @@ a {
 	color: inherit;
 	text-decoration: none;
 }
+
+.notFound {
+	height: 100%;
+	gap: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}

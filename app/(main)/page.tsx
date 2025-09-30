@@ -7,5 +7,5 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function Home() {
-	return <div>Нужно выбрать один из разделов, перечисленных слева</div>;
+	return <div>Нужно выбрать один из подразделов</div>;
 }

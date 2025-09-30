@@ -2,8 +2,7 @@
 
 import { KeyboardEvent, useState } from 'react';
 import { SearchProps } from './Search.props';
-import { Button, Input } from '@/shared';
-import GlassIcon from '../../assets/glass.svg';
+import { IconButton, Input } from '@/shared';
 import styles from './Search.module.css';
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
@@ -35,9 +34,13 @@ export const Search = ({ className, ...props }: SearchProps) => {
 				onChange={(e) => setSearch(e.target.value)}
 				onKeyDown={handleKeyDown}
 			/>
-			<Button appearance='primary' className={styles.button} onClick={goToSearch} aria-label='Поиск по сайту'>
-				<GlassIcon />
-			</Button>
+			<IconButton
+				appearance='primary'
+				icon='glass'
+				className={styles.button}
+				onClick={goToSearch}
+				aria-label='Поиск по сайту'
+			/>
 		</form>
 	);
 };
