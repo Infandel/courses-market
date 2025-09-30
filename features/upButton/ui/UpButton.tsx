@@ -37,7 +37,7 @@ export const UpButton = () => {
 
 	return (
 		<motion.div ref={scope} className={styles.upButton} initial={{ opacity: 0 }}>
-			<IconButton appearance='primary' icon='up' onClick={scrollToTop} />
+			<IconButton appearance='primary' icon='up' onClick={scrollToTop} aria-label='Наверх' />
 		</motion.div>
 	);
 };
