@@ -36,7 +36,7 @@ export const MobileSidebar = ({ menu, firstCategory }: { menu: MenuItem[]; first
 
 	return (
 		<div className={styles.mobileSidebar}>
-			<Link href={'/'}>
+			<Link href={'/'} aria-label='К домашней странице'>
 				<Logo />
 			</Link>
 			<IconButton appearance='white' icon='burger' onClick={() => setIsOpened(true)} />

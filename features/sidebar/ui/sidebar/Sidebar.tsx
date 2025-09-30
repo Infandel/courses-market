@@ -12,7 +12,7 @@ export const Sidebar = async ({ className, ...props }: SidebarProps) => {
 
 	return (
 		<div className={clsx(className, styles.sidebar)} {...props}>
-			<Link href={'/'}>
+			<Link href={'/'} aria-label='К домашней странице'>
 				<Logo />
 			</Link>
 			<Search />
