@@ -7,12 +7,6 @@ export const Footer = ({ className, ...props }: FooterProps) => {
 	return (
 		<footer className={clsx(className, styles.footer)} {...props}>
 			<div>Made by Infandel in {format(new Date(), 'yyyy')}</div>
-			<a href='#' target='_blank'>
-				Пользовательское соглашение
-			</a>
-			<a href='#' target='_blank'>
-				Политика конфиденциальности
-			</a>
 		</footer>
 	);
 };
